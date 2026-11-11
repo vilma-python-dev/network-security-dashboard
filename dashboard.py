@@ -3,8 +3,10 @@ import streamlit as st
 import subprocess
 import platform
 import re
+import time 
 
 st.set_page_config(page_title="Network Security Dashboard", layout="wide")
+
 
 st.title("🔐 Network Security Dashboard")
 st.write("Monitor network devices and check their response times.")
@@ -33,7 +35,8 @@ def check_device(ip):
     except (subprocess.TimeoutExpired, OSError):
         return "Error", None
 
-if st.button("Check Network Devices"):
+@st.fragment(run_every="30s")
+def monitor_dashboard():
     results = []
 
     for ip in devices:
@@ -56,3 +59,5 @@ if st.button("Check Network Devices"):
     col1.metric("Total Devices", len(devices))
     col2.metric("Online", online)
     col3.metric("Offline / Error", offline)
+
+monitor_dashboard()
