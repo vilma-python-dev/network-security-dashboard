@@ -17,3 +17,5 @@ def check_device(ip_address):
 if  __name__ =="__main__":
   print ("network Monitoring Tool")
   check_device("8.8.8.8")
+  check_device("1.1.1.1")
+  check_device("9.9.9.9")
