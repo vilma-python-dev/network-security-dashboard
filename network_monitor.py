@@ -11,6 +11,7 @@ def check_device(ip_address):
   )
   if result.returncode ==0:
     print(f"{ip_address} is online")
+    print(result.stdout.strip())
   else:
     print(f"{ip_address} is offline or not responding")
 
